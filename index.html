@@ -1,35 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-  #clock {
-    font-family: 'Arial', sans-serif;
-    color: #333;
-    font-size: 24px;
-    text-align: center;
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    width: 150px;
-    margin: auto;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notion Clock</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black; /* Set background color to black */
+            color: white; /* Set text color to white */
+        }
+        #clock {
+            font-family: 'Arial', sans-serif;
+            font-size: 24px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<div id="clock"></div>
-<script>
-  function updateClock() {
-    var now = new Date();
-    var hours = now.getHours();
-    var minutes = now.getMinutes();
-    var seconds = now.getSeconds();
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-    var timeString = hours + ':' + minutes + ':' + seconds;
-    document.getElementById('clock').innerText = timeString;
-  }
-  setInterval(updateClock, 1000);
-  updateClock();
-</script>
+    <div id="clock"></div>
+    <script>
+        function updateClock() {
+            var now = new Date();
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            var dayOfWeek = days[now.getDay()];
+            var dayOfMonth = now.getDate();
+            var month = months[now.getMonth()];
+            var timeString = dayOfWeek + ', ' + dayOfMonth + ' ' + month;
+            document.getElementById('clock').innerText = timeString;
+        }
+        setInterval(updateClock, 1000 * 60 * 60); // Update every hour
+        updateClock(); // Update immediately
+    </script>
 </body>
 </html>
